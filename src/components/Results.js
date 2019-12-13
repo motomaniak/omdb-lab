@@ -3,10 +3,6 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 class Results extends Component {
-    state = {
-        show: false
-    }
-
     showInfo = (id) => {
         let url = `http://www.omdbapi.com/?apikey=465cc29c&i=${id}`
         fetch(url)
@@ -20,14 +16,16 @@ class Results extends Component {
 
     render() {
         let results = this.props.data.map(ele => {
-            return (<Card style={{width: '25rem'}}>
-                <Card.Img variant='bottom' src={ele.Poster} />
-                <Card.Body>
-                    <Card.Text id={ele.imdbID}></Card.Text>
-                    <Card.Title>{ele.Title}, {ele.Year}</Card.Title>
-                    <Button onClick={()=> this.showInfo(ele.imdbID)} variant='primary'>Info</Button>
-                </Card.Body>
-            </Card>)
+            return (
+                <Card style={{width: '25rem'}}>
+                    <Card.Img variant='bottom' src={ele.Poster} />
+                    <Card.Body>
+                        <Card.Text id={ele.imdbID}></Card.Text>
+                        <Card.Title>{ele.Title}, {ele.Year}</Card.Title>
+                        <Button onClick={()=> this.showInfo(ele.imdbID)} variant='primary'>Info</Button>
+                    </Card.Body>
+                </Card>
+            )
         })
         return (
             <div className='container'>
